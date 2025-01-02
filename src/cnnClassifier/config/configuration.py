@@ -2,7 +2,7 @@ import os, sys
 from src.cnnClassifier.constants import *
 from src.cnnClassifier.utils.utils import read_yaml , create_direcories
 from src.cnnClassifier.exception.exception import customexception
-from src.cnnClassifier.entity.config_entity import DataIngestionConfig , PrepareBaseModelConfig , TrainingConfig
+from src.cnnClassifier.entity.config_entity import DataIngestionConfig , PrepareBaseModelConfig , TrainingConfig, EvaluationConfig
 
 class ConfigurationManager():
     def __init__(self, CONFIG_FILE_PATH =CONFIG_FILE_PATH , PARAMS_FILE_PATH = PARAMS_FILE_PATH):
@@ -63,5 +63,17 @@ class ConfigurationManager():
                 params_is_augmentation = params.AUGMENTATION
             )
             return training_config
+        except Exception as e:
+            raise customexception(e, sys)
+    def get_evaluation_config(self) -> EvaluationConfig:
+        try:
+            eval_config = EvaluationConfig(
+            model_path = Path(self.config.training.trained_model_path),
+            training_path = Path("artifacts/data_ingestion/kidney-ct-scan-image"),
+            params_image_size = self.params.IMAGE_SIZE,
+            all_params = self.params,
+            params_batch_size = self.params.BATCH_SIZE,
+            )
+            return eval_config
         except Exception as e:
             raise customexception(e, sys)
