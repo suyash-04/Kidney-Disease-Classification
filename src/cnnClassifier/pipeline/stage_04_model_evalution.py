@@ -17,6 +17,8 @@ class EvaluationPipeline:
             evaluation._valid_generator()
             evaluation.evaluation()
             evaluation.save_score()
+            evaluation.log_into_mlflow()
 
         except Exception as e:
             raise customexception(e, sys)
+    

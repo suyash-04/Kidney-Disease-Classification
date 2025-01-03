@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/codes/mlops/Kidney-Disease-Classification/mlruns/0/65d2382332b840b38a1aeee135bc11b8/artifacts
+end_time: 1735910560353
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 65d2382332b840b38a1aeee135bc11b8
+run_name: bemused-bear-957
+run_uuid: 65d2382332b840b38a1aeee135bc11b8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735910496843
+status: 3
+tags: []
+user_id: Suyash

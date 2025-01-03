@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/codes/mlops/Kidney-Disease-Classification/mlruns/0/094274f6f74246dbb5acd6ff3c462274/artifacts
+end_time: 1735909195213
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 094274f6f74246dbb5acd6ff3c462274
+run_name: glamorous-tern-116
+run_uuid: 094274f6f74246dbb5acd6ff3c462274
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735909129791
+status: 3
+tags: []
+user_id: Suyash
