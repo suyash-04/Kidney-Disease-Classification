@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kidney Disease Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #ececec, #d0d0d0); /* Soft Gray Gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #5f5f5f;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 1200px;
+            padding: 60px;
+            background: #ffffff; /* Clean White Background */
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); /* Soft, Subtle Shadow */
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #6b6b6b;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #787878;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #707070;
+        }
+
+        #previewImage {
+            width: 100%;
+            max-width: 100%;
+            max-height: 350px;
+            height: auto;
+            margin-top: 20px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+        }
+
+        #skeletonLoader {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #607d4a;
+            font-size: 20px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .button-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        label.upload-btn {
+            padding: 15px 40px;
+            background: #6b6b6b;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            width: 48%;
+        }
+
+        label.upload-btn:hover {
+            background: #5a5a5a;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        button.predict-btn {
+            padding: 15px 40px;
+            background: #6b6b6b;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 48%;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        button.predict-btn:hover {
+            background: #5a5a5a;
+        }
+
+        #loading {
+            display: none;
+            margin-top: 20px;
+            font-size: 20px;
+            color: #607d4a;
+        }
+
+        #result {
+            margin-top: 30px;
+            padding: 25px;
+            background: #faf3e0;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #4a6d3a;
+            font-size: 22px;
+            font-weight: 600;
+            max-width: 600px;
+            margin: 30px auto 0;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            label.upload-btn, button.predict-btn {
+                width: 100%;
+                padding: 15px 30px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kidney Disease Detection</h1>
+        <h2>Upload an image to check kidney health</h2>
+        <p>Our AI-powered tool helps you assess kidney health based on uploaded images.</p>
+
+        <div id="skeletonLoader" class="skeleton-loader">
+            Waiting for image upload...
+        </div>
+        <img id="previewImage" />
+
+        <div class="button-wrapper">
+            <label for="fileInput" class="upload-btn">Upload Image</label>
+            <input type="file" id="fileInput" accept="image/*" />
+            <button id="predictButton" class="predict-btn">Classify Image</button>
+        </div>
+
+        <div id="loading">Analyzing...</div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let base64Image = "";
+
+        document.getElementById("fileInput").addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    base64Image = e.target.result.split(",")[1];
+
+                    document.getElementById("skeletonLoader").style.display = "none";
+                    document.getElementById("previewImage").src = e.target.result;
+                    document.getElementById("previewImage").style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById("predictButton").addEventListener("click", function () {
+            if (!base64Image) {
+                alert("Please upload an image first!");
+                return;
+            }
+
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("result").innerText = "";
+
+            fetch("/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ image: base64Image })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("loading").style.display = "none";
+                const image = document.getElementById("previewImage");
+                image.style.display = "block";
+
+                const result = data[0] ? data[0].image : "No result found";
+                document.getElementById("result").innerHTML = `<span style="font-size: 36px; font-weight: bold;">${result}</span>`;
+            })
+            .catch(error => {
+                document.getElementById("loading").style.display = "none";
+                alert("Error: " + error.message);
+            });
+        });
+    </script>
+</body>
+</html>
