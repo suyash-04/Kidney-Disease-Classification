@@ -31,6 +31,7 @@ class PrepareBaseModel:
             x = model.output
             
             x = tf.keras.layers.Dense(1024, activation='relu')(x)
+            x = tf.keras.layers.Dense(512, activation='relu')(x)
             
             output = tf.keras.layers.Dense(units = classes, activation='softmax')(x)
             full_model = tf.keras.models.Model(
