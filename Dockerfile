@@ -1,13 +1,8 @@
-
-FROM python:3.11-slim-buster
+FROM python:3.11-slim-buster 
 WORKDIR /app
-COPY . /app/
-
-RUN  pip install --no-cache-dir -r requirements.txt
+COPY . /app
 
 
-# Expose the port the app runs on
-EXPOSE 5000
-
-# Command to run the application
+RUN apt update -y 
+RUN apt-get update && pip install -r requirements.txt
 CMD ["python", "app.py"]
