@@ -48,4 +48,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/kidneydiseaseclassify
+          tags: ${{ secrets.DOCKER_USERNAME }}/kidneydiseaseclassify:latest
