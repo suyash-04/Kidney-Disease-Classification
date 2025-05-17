@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://kidneydiseaseclassify.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_5cbc12f194034735b650399c81797502 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_7b05b3782f6c4e85ae6cb772ef5abbd9 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_5efae5a12f23451ca49e2ca4861b8e15 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_adc84a8c8ac147d5bf6094f848dc67b1 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: kidneydiseaseclassify.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5cbc12f194034735b650399c81797502 }}/kidneydiseaseclassify:${{ github.sha }}
+        tags: kidneydiseaseclassify.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5efae5a12f23451ca49e2ca4861b8e15 }}/kidneydiseaseclassify/kidneydiseaseclassify:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'kidneydiseaseclassify'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_4e7ca0fcd683422d86b56774280f2867 }}
-        images: 'kidneydiseaseclassify.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5cbc12f194034735b650399c81797502 }}/kidneydiseaseclassify:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c406a1ec43334a66b7bc072459dc6f52 }}
+        images: 'kidneydiseaseclassify.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5efae5a12f23451ca49e2ca4861b8e15 }}/kidneydiseaseclassify/kidneydiseaseclassify:${{ github.sha }}'
