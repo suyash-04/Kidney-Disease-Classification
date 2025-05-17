@@ -1,21 +1,21 @@
-# Kidney Disease Classification
+# 🏥 Kidney Disease Classification
 
 A deep learning-based system for classifying kidney disease from medical images using TensorFlow and Flask.
 
-## Overview
+## 📋 Overview
 
 This project implements a CNN-based classifier for kidney disease detection from medical images. It uses transfer learning with pre-trained models and provides both training and prediction capabilities through a web interface.
 
-## Features
+## ✨ Features
 
-- Deep learning model for kidney disease classification
-- Web interface for easy interaction
-- Training pipeline with MLflow integration
-- DVC for data version control
-- Docker support for containerization
-- REST API endpoints for predictions
+- 🤖 Deep learning model for kidney disease classification
+- 🌐 Web interface for easy interaction
+- 📊 Training pipeline with MLflow integration
+- 🔄 DVC for data version control
+- 🐳 Docker support for containerization
+- 🔌 REST API endpoints for predictions
 
-## Technical Stack
+## 🛠️ Technical Stack
 
 - **Deep Learning**: TensorFlow 2.12.0
 - **Web Framework**: Flask
@@ -28,7 +28,7 @@ This project implements a CNN-based classifier for kidney disease detection from
   - scipy for scientific computing
   - joblib for model persistence
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 Kidney-Disease-Classification/
@@ -45,11 +45,11 @@ Kidney-Disease-Classification/
 └── Dockerfile        # Docker configuration
 ```
 
-## Setup and Installation
+## 🚀 Setup and Installation
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/suyash-04/Kidney-Disease-Classification.git
 cd Kidney-Disease-Classification
 ```
 
@@ -69,9 +69,9 @@ pip install -r requirements.txt
 dvc pull
 ```
 
-## Usage
+## 💻 Usage
 
-### Training the Model
+### 🎯 Training the Model
 
 1. Start the training process:
 ```bash
@@ -81,7 +81,7 @@ python main.py
 Or use the web interface:
 - Navigate to `http://localhost:5000/train`
 
-### Making Predictions
+### 🔮 Making Predictions
 
 1. Start the Flask application:
 ```bash
@@ -92,14 +92,14 @@ python app.py
 - Open `http://localhost:5000` in your browser
 - Upload an image for prediction
 
-### API Endpoints
+### 🔌 API Endpoints
 
 - `GET /`: Home page
 - `GET /predict`: Prediction page
 - `POST /predict`: Submit image for prediction
 - `GET/POST /train`: Trigger model training
 
-## Model Parameters
+## ⚙️ Model Parameters
 
 The model can be configured through `params.yaml`:
 - EPOCHS: 20
@@ -108,7 +108,7 @@ The model can be configured through `params.yaml`:
 - LEARNING_RATE: 0.01
 - CLASSES: 2
 
-## Docker Support
+## 🐳 Docker Support
 
 Build and run the Docker container:
 ```bash
@@ -116,7 +116,7 @@ docker build -t kidney-disease-classifier .
 docker run -p 5000:5000 kidney-disease-classifier
 ```
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -124,11 +124,11 @@ docker run -p 5000:5000 kidney-disease-classifier
 4. Push to the branch
 5. Create a Pull Request
 
-## License
+## 📄 License
 
 This project is licensed under the terms of the license included in the repository.
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 - TensorFlow team for the deep learning framework
 - Flask team for the web framework
