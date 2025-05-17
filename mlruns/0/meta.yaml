@@ -1,6 +1,3 @@
-artifact_location: file:///D:/codes/mlops/Kidney-Disease-Classification/mlruns/0
-creation_time: 1735909129150
-experiment_id: '0'
-last_update_time: 1735909129150
-lifecycle_stage: active
-name: Default
+version https://git-lfs.github.com/spec/v1
+oid sha256:da56a7768c4987b3e46c600d6d81abb4d4da5e527261c6835c296d7e4914fb24
+size 199
