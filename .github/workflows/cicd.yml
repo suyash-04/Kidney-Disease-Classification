@@ -33,7 +33,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Debug Docker username
-        run: echo "Docker username is '${{ secrets.DOCKER_USERNAME }}'"
+        run: |
+          echo "Docker username is '${{ secrets.DOCKER_USERNAME }}'"
+          echo "Repository will be: suyash2004/kidneydiseaseclassify"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -49,4 +51,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/kidneydiseaseclassify:latest
+          tags: suyash2004/kidneydiseaseclassify:latest
