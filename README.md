@@ -41,6 +41,27 @@ This project has the potential to:
 - Support medical research
 - Contribute to better patient outcomes
 
+## 🔗 Live Deployment
+
+The application is deployed and accessible at:
+
+🌐 [Kidney Disease Classification App](https://kidneydiseaseclassification-e9fsced8bdf0a7cq.canadacentral-01.azurewebsites.net)
+
+Try the live demo to experience the kidney disease classification system without local installation.
+
+## 📸 Screenshots
+
+Below are screenshots showcasing the application's interface and functionality:
+
+### Home Page
+![Home Page](screenshots/home1.jpeg)
+*The main landing page of the Kidney Disease Classification application.*
+
+### Prediction Display
+![Results Display](screenshots/preditct2.jpeg)
+*Example of classification results after image processing.*
+
+
 ## ✨ Features
 
 - 🤖 Deep learning model for kidney disease classification
